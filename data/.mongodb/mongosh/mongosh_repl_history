@@ -1,0 +1,5 @@
+db.auth("root", "password")
+use admin
+db.createCollection("test")
+use product-service
+show dbs
