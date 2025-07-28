@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
+import org.testcontainers.utility.TestcontainersConfiguration;
 
 @Import(TestcontainersConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -24,9 +25,9 @@ class ProductServiceApplicationTests {
 	void shouldCreateProduct() {
 		String requestBody = """
 				{
-					"name": "iPhone 14",
-					"description": "Apple iPhone 14",
-					"price": 1200
+					"name": "iPhone 15",
+					"description": "iPhone 15 is a smartphone from Apple",
+					"price": 1000
 				}
 				""";
 		RestAssured.given()
@@ -37,9 +38,9 @@ class ProductServiceApplicationTests {
 				.then()
 				.statusCode(201)
 				.body("id", Matchers.notNullValue())
-				.body("name", Matchers.equalTo("iPhone 14"))
-				.body("description", Matchers.equalTo("Apple iPhone 14"))
-				.body("price", Matchers.equalTo(1200.00F));
+				.body("name", Matchers.equalTo("iPhone 15"))
+				.body("description", Matchers.equalTo("iPhone 15 is a smartphone from Apple"))
+				.body("price", Matchers.equalTo(1000));
 
 
 	}
