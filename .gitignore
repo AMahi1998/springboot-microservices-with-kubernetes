@@ -32,10 +32,5 @@ build/
 ### VS Code ###
 .vscode/
 
-#Ignore MySQL runtime files
-mysql/
-*.sock
-*.pid
-*.err
-*.index
-ib_*
+# Ignore MySQL runtime files
+docker/mysql/*.sock
