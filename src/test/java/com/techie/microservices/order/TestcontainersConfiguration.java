@@ -12,7 +12,11 @@
 //	@Bean
 //	@ServiceConnection
 //	MySQLContainer<?> mysqlContainer() {
-//		return new MySQLContainer<>(DockerImageName.parse("mysql:latest"));
+//
+//		MySQLContainer<?> container = new MySQLContainer<>(DockerImageName.parse("mysql:8.1.0"));
+//		container.start();
+//		System.out.println("Container started: " + container.getContainerName());
+//		return container;
 //	}
 //
 //}
