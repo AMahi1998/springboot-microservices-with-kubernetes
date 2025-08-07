@@ -2,19 +2,24 @@ package com.techie.microservices.order.service;
 
 import com.techie.microservices.order.client.InventoryClient;
 import com.techie.microservices.order.dto.OrderRequest;
+import com.techie.microservices.order.event.OrderPlacedEvent;
 import com.techie.microservices.order.model.Order;
 import com.techie.microservices.order.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class OrderService {
 
     private final OrderRepository orderRepository;
     private final InventoryClient inventoryClient;
+    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
 
     public void placeOrder(OrderRequest orderRequest){
 
@@ -29,6 +34,13 @@ public class OrderService {
 
             //save Order entity to OrderRepository
             orderRepository.save(order);
+
+            //Send the message to Kafka topic
+            //orderNumber, email
+            OrderPlacedEvent orderPlacedEvent= new OrderPlacedEvent(order.getOrderNumber(),orderRequest.userDetails().email());
+            log.info("Start - Sending OrderPlacedEvent {} to Kafka topic order-placed", orderPlacedEvent);
+            kafkaTemplate.send("order-placed", orderPlacedEvent);
+            log.info("End - Sending OrderPlacedEvent {} to Kafka topic order-placed", orderPlacedEvent);
 
         }
         else {
