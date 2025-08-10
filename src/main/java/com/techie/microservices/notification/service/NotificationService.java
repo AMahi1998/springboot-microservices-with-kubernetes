@@ -20,18 +20,17 @@ public class NotificationService {
         log.info("Got Message from order-placed topic: {}", orderPlacedEvent);
         MimeMessagePreparator messagePreparator=
                 mimeMessage -> {
-                    MimeMessageHelper messageHelper=new MimeMessageHelper(mimeMessage);
+                    MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
                     messageHelper.setFrom("springshop@email.com");
                     messageHelper.setTo(orderPlacedEvent.getEmail());
                     messageHelper.setSubject("Your Order with OrderNumber %s is placed successfully" + orderPlacedEvent.getOrderNumber());
                     messageHelper.setText("""
                             Hi,
-                            Your Order with OrderNumber %s is placed successfully. 
+                            Your Order with OrderNumber %s is placed successfully.
                             
                             Best Regards,
                             Spring Shop
-                            """,
-                            orderPlacedEvent.getOrderNumber());
+                            """.formatted(orderPlacedEvent.getOrderNumber()), /*isHtml*/false);
                 };
         try{
             javaMailSender.send(messagePreparator);
