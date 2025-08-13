@@ -20,5 +20,6 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
+    private String skuCode; // Stock Keeping Unit Code, used to identify products in inventory
 }
 

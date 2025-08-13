@@ -21,6 +21,7 @@ public class ProductService {
                 .name(productRequest.name())
                 .description(productRequest.description())
                 .price(productRequest.price())
+                .skuCode(productRequest.skuCode())
                 .build();
         productRepository.save(product);
         log.info("Product created successfully");
@@ -28,7 +29,8 @@ public class ProductService {
                 product.getId(),
                 product.getName(),
                 product.getDescription(),
-                product.getPrice());
+                product.getPrice(),
+                product.getSkuCode());
     }
 
     public List<ProductResponse> getAllProducts() {
@@ -38,7 +40,8 @@ public class ProductService {
                         product.getId(),
                         product.getName(),
                         product.getDescription(),
-                        product.getPrice()))
+                        product.getPrice(),
+                        product.getSkuCode()))
                 .toList();
 
     }
