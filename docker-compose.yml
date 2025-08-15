@@ -28,3 +28,8 @@ services:
       - ./docker/keycloak/realms/:/opt/keycloak/data/import/
     depends_on:
       - keycloak-mysql
+  loki:
+    image: grafana/loki:main
+    command: [ '-config.file=/etc/loki/local-config.yaml' ]
+    ports:
+      - '3100:3100'
