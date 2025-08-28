@@ -1,19 +1,17 @@
-@"
 # runtime volumes & junk
-data/
-**/data/
-**/mysql/
+mono/data/
+mono/mysql/
+mono/tempo/tempo-data/
 **/logs/
 **/tmp/
-# builds
 **/target/
+
 # IDE
 .idea/
 .vscode/
 *.iml
-# OS
 .DS_Store
 Thumbs.db
-# frontend
+
+# frontend deps
 frontend/node_modules/
-"@ | Out-File .gitignore -Encoding utf8
