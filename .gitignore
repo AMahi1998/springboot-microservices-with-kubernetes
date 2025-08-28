@@ -1,0 +1,16 @@
+# runtime volumes & junk
+data/
+**/data/
+**/mysql/
+**/mongodb/
+**/logs/
+**/tmp/
+# builds
+**/target/
+# IDE
+.idea/
+.vscode/
+*.iml
+# OS
+.DS_Store
+Thumbs.db
