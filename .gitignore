@@ -1,8 +1,8 @@
+@"
 # runtime volumes & junk
 data/
 **/data/
 **/mysql/
-**/mongodb/
 **/logs/
 **/tmp/
 # builds
@@ -14,3 +14,6 @@ data/
 # OS
 .DS_Store
 Thumbs.db
+# frontend
+frontend/node_modules/
+"@ | Out-File .gitignore -Encoding utf8
