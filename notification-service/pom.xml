@@ -3,14 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.5.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.programming.techie</groupId>
+		<artifactId>springboot-microservices-with-kubernetes</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.techie.microservices</groupId>
 	<artifactId>notification-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>notification-service</name>
 	<description>Notification Service</description>
 	<url/>
@@ -101,18 +99,21 @@
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>junit-jupiter</artifactId>
+			<version>1.19.7</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.testcontainers</groupId>
 			<artifactId>kafka</artifactId>
+			<version>1.19.7</version>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.32</version>
+			<scope>provided</scope>
+		</dependency>
     </dependencies>
 	<repositories>
 		<repository>

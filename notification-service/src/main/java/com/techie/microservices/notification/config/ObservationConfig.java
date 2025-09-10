@@ -9,9 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 
 @Configuration(proxyBeanMethods = false)
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class ObservationConfig {
-    private final ConcurrentKafkaListenerContainerFactory concurrentKafkaListenerContainerFactory;
+    private final ConcurrentKafkaListenerContainerFactory<?, ?> concurrentKafkaListenerContainerFactory;
+    public ObservationConfig(
+            ConcurrentKafkaListenerContainerFactory<?, ?> concurrentKafkaListenerContainerFactory) {
+        this.concurrentKafkaListenerContainerFactory = concurrentKafkaListenerContainerFactory;
+    }
+
 
     @PostConstruct
     public void setObservationForKafkaTemplate() {

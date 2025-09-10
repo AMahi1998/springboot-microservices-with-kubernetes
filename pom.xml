@@ -29,13 +29,34 @@
         <spring-cloud.version>2023.0.1</spring-cloud.version>
         <dockerPassword>${dockerPassword}</dockerPassword>
     </properties>
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                    <image>
+                        <name>mahima0422/${project.artifactId}</name>
+                        <publish>true</publish>
+                    </image>
+                    <docker>
+                        <host>tcp://localhost:2375</host>
+                        <publishRegistry>
+                            <username>mahima0422</username>
+                            <password>${dockerPassword}</password>
+                        </publishRegistry>
+                    </docker>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>
